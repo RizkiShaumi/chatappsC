@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <winsock2.h>
+
 #include <pthread.h>  // For threads
 
 #pragma comment(lib, "ws2_32.lib") // Link with Winsock library
 
 #define PORT 8080
-
+char key[16];
 SOCKET new_socket;
 int exit_flag = 0;  // Global flag for closing the connection
 
@@ -76,7 +77,7 @@ int main() {
 
     // Set up the sockaddr_in structure
     address.sin_family = AF_INET;
-    address.sin_addr.s_addr = INADDR_ANY;
+    address.sin_addr.s_addr = inet_addr("127.0.0.1");
     address.sin_port = htons(PORT);
 
     // Bind the socket
@@ -92,6 +93,7 @@ int main() {
     }
 
     printf("Waiting for a connection...\n");
+    
 
     // Accept a connection from a client
     if ((new_socket = accept(server_fd, (struct sockaddr *)&address, &addrlen)) == INVALID_SOCKET) {

@@ -83,7 +83,7 @@ int main(){
     serv_addr.sin_port = htons(PORT);
     serv_addr.sin_addr.s_addr= inet_addr("127.0.0.1");
 
-    if (connect(sock, (struct  sockaddr *)&serv_addr, sizeof(serv_addr)) <0)
+    if (connect(sock, (struct  sockaddr *)&serv_addr, sizeof(serv_addr)) <0 )
     {
         printf("\nKoneksi Gagal\n"); 
         return -1;    
